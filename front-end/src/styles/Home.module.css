@@ -1,0 +1,20 @@
+.wrapper {
+  margin: 0 13%;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.btnTryNow {
+  background-color: #fcca57;
+}
+
+.btnTryNow:hover {
+  background-color: #fdd16b;
+}

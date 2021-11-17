@@ -1,0 +1,11 @@
+.cardBody {
+  margin-top: 20px;
+  padding-left: 20px;
+  min-height: 40vw;
+}
+.list {
+  width: 100%;
+}
+.listItem:hover {
+  background-color: aqua;
+}
