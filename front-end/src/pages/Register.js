@@ -11,6 +11,7 @@ import { FormControl, InputLabel } from "@material-ui/core";
 import axios from "axios";
 import { apiURL } from "../utils/apiURL";
 import { useToken } from "../auth/useToken";
+import Footer from "../components/Footer";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -49,7 +50,7 @@ export default function Register() {
       <div className={styles.flexbox}>
         <Card className={styles.card}>
           <CardContent>
-            <h1 className={styles.title}>Register</h1>
+            <h1 className={styles.title}>Đăng ký</h1>
             {error && <small>{error}</small>}
             <hr />
             <FormControl>
@@ -76,10 +77,10 @@ export default function Register() {
                 className={styles.input}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {confirmPass !== password ? (
+                <p className={styles.errConfirm}>Mật khẩu nhập lại không khớp</p>
+              ) : null}
             </FormControl>
-            {confirmPass !== password ? (
-              <small className={styles.errConfirm}>Mật khẩu nhập lại không khớp</small>
-            ) : null}
             <FormControl>
               <InputLabel htmlFor="confirm-password">Nhập lại mật khẩu</InputLabel>
               <Input
@@ -116,17 +117,21 @@ export default function Register() {
                 onChange={(e) => setAddress(e.target.value)}
               />
             </span>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.btnSubmit}
+              onClick={onRegister}
+            >
+              Đăng ký
+            </Button>
           </CardContent>
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.btnSubmit}
-            onClick={onRegister}
-          >
-            Đăng ký
-          </Button>
+          <div>
+            <img src="loginSignup.svg" alt="signup" className={styles.img} />
+          </div>
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

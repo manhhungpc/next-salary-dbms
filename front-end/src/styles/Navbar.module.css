@@ -4,5 +4,21 @@
 }
 
 .logoText {
+  text-transform: none;
   font-family: "Orbitron", sans-serif;
+}
+
+.tab,
+.homeTab {
+  height: 20px;
+}
+
+.tab:hover {
+  color: #fff;
+  background-color: #7d79df;
+}
+
+.textTab {
+  text-transform: none;
+  font-size: 16px;
 }

@@ -14,13 +14,17 @@ import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import TextField from "@material-ui/core/TextField";
+import CardContent from "@material-ui/core/CardContent";
+import ListItemText from "@material-ui/core/ListItemText";
+import Tooltip from "@material-ui/core/Tooltip";
 import styles from "../styles/Dashboard.module.css";
 import NewTable from "../components/NewTable";
 import axios from "axios";
 import { apiURL } from "../utils/apiURL";
 import { useUser } from "../auth/useUser";
 import { useToken } from "../auth/useToken";
-import { ListItemText } from "@material-ui/core";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TableList = ({ tables, setLoading, headers }) => {
   const [openId, setOpenId] = useState(0);
@@ -48,6 +52,12 @@ const TableList = ({ tables, setLoading, headers }) => {
   const onDeleteTable = async (idTable) => {
     await axios.post(`${apiURL}/api/delete-table/${idTable}`, {}, headers);
     setLoading((loading) => !loading);
+    toast.configure();
+    toast.success("Xóa bảng thành công", {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 3000,
+      theme: "dark",
+    });
   };
 
   return (
@@ -56,10 +66,15 @@ const TableList = ({ tables, setLoading, headers }) => {
         <>
           <ListItem button className={styles.listItem} onClick={(e) => onViewTable(item.id)}>
             <ListItemText
-              primary={<h3>{item.name}</h3>}
-              secondary={`Ngày tạo: ${item.createDate.split("T")[0]}`}
+              primary={<h2 style={{ margin: "4px 0" }}>{item.name}</h2>}
+              secondary={
+                <span style={{ margin: "0" }}>
+                  Ngày tạo: {item.createDate.split("T")[0]}
+                  <small style={{ display: "block" }}>Id bảng: {item.id}</small>
+                </span>
+              }
             />
-            <small>id: {item.id}</small>
+
             <ListItemSecondaryAction>
               {openEdit && openId == item.id && (
                 <>
@@ -69,12 +84,16 @@ const TableList = ({ tables, setLoading, headers }) => {
                   </Button>
                 </>
               )}
-              <IconButton edge="end">
-                <EditIcon onClick={() => handleEditOpen(item.id)} />
-              </IconButton>
-              <IconButton edge="end" onClick={() => onDeleteTable(item.id)}>
-                <DeleteForeverIcon />
-              </IconButton>
+              <Tooltip title="Chỉnh sửa">
+                <IconButton edge="end" className={styles.iconBtn}>
+                  <EditIcon onClick={() => handleEditOpen(item.id)} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Xóa bảng">
+                <IconButton edge="end" className={styles.iconBtn}>
+                  <DeleteForeverIcon onClick={() => onDeleteTable(item.id)} />
+                </IconButton>
+              </Tooltip>
             </ListItemSecondaryAction>
           </ListItem>
         </>
@@ -107,6 +126,8 @@ export default function Dashboard() {
     const fetchTable = async (id) => {
       const tables = await axios.get(`${apiURL}/api/view-tables/${id}`, headers);
       setTables(tables.data);
+
+      localStorage.setItem("tables", JSON.stringify(tables.data));
     };
     fetchTable(id);
   }, [loading]);
@@ -116,8 +137,8 @@ export default function Dashboard() {
       <Navbar select={1} />
       <Container>
         <Card className={styles.cardBody}>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={7}>
               <h1>Các bảng lương</h1>
               <Button
                 variant="contained"
@@ -130,8 +151,23 @@ export default function Dashboard() {
               <NewTable open={open} handleClose={handleClose} />
               <TableList tables={tables} token={token} setLoading={setLoading} headers={headers} />
             </Grid>
-            <Grid item xs={6}>
-              Hellu
+            <Grid item xs={5}>
+              <h1>Tiện ích khác</h1>
+              <div className={styles.wrapperImg}>
+                <img src="other-utils.svg" className={styles.imgUtil} alt="utils" />
+              </div>
+              <br />
+              <div style={{ display: "inline-block" }}>
+                <Card className={styles.cardUtil}>
+                  <CardContent>Tin tức</CardContent>
+                </Card>
+                <Card className={styles.cardUtil}>
+                  <CardContent>Kho sách</CardContent>
+                </Card>
+                <Card className={styles.cardUtil}>
+                  <CardContent>Đọc báo</CardContent>
+                </Card>
+              </div>
             </Grid>
           </Grid>
         </Card>

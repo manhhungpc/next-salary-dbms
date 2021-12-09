@@ -2,10 +2,42 @@
   margin-top: 20px;
   padding-left: 20px;
   min-height: 40vw;
+  background-color: #fff;
 }
 .list {
   width: 100%;
+  margin: 10px 0;
 }
-.listItem:hover {
-  background-color: aqua;
+
+.listItem {
+  background-color: #d6d6d6;
+  border-radius: 5px;
+  margin-bottom: 6px;
+}
+.listItem:hover,
+.iconBtn:hover {
+  background-color: #fcca57;
+}
+.imgUtil {
+  width: 90%;
+}
+
+.wrapperImg {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 90%;
+}
+
+.cardUtil {
+  display: inline-block;
+  padding-right: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  background-color: #fcca57;
+}
+
+.cardUtil:hover {
+  cursor: pointer;
+  width: 120px;
 }

@@ -16,6 +16,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ViewUserInfo from "./ViewUserInfo";
 import { useUser } from "../auth/useUser";
+import { withStyles } from "@material-ui/core/styles";
 
 export default function Navbar({ select }) {
   const [auth, setAuth] = useState(false);
@@ -40,24 +41,49 @@ export default function Navbar({ select }) {
   const open = Boolean(anchorEl);
   const id = open ? "popover" : undefined;
 
+  const StyledTabs = withStyles({
+    indicator: {
+      display: "flex",
+      justifyContent: "center",
+      backgroundColor: "transparent",
+      "& > span": {
+        maxWidth: 50,
+        width: "100%",
+        backgroundColor: "#635ee7",
+      },
+    },
+  })((props) => (
+    <Tabs style={{ height: "30px" }} {...props} TabIndicatorProps={{ children: <span /> }} />
+  ));
+
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: "#fff", color: "#000" }}>
+      <AppBar position="static" style={{ backgroundColor: "#fff", color: "#000", height: "60px" }}>
         <Toolbar>
-          <Tabs value={select} indicatorColor="primary">
-            <Tab label={<p className={styles.logoText}>NextSalary</p>} href="/" />
-            <Tab label="Tiện ích" href="/dashboard" />
-            <Tab label="Liên hệ" />
-            <Tab label="About us" />
-          </Tabs>
+          <div>
+            <StyledTabs value={select}>
+              <Tab
+                label={<p className={styles.logoText}>NextSalary</p>}
+                className={styles.homeTab}
+                href="/"
+              />
+              <Tab
+                label={<p className={styles.textTab}>Tiện ích</p>}
+                className={styles.tab}
+                href="/dashboard"
+              />
+              <Tab label={<p className={styles.textTab}>Liên hệ</p>} className={styles.tab} />
+              <Tab label={<p className={styles.textTab}>About us</p>} className={styles.tab} />
+            </StyledTabs>
+          </div>
           <Typography className={styles.title} />
           {auth ? (
             <>
-              <Avatar>
+              <Avatar style={{ backgroundColor: "#635ee7" }}>
                 <PersonIcon />
               </Avatar>
               <Button color="default" endIcon={<ArrowDropDownIcon />} onClick={handleClick}>
-                {user.name}
+                <span style={{ textTransform: "none" }}>{user.name}</span>
               </Button>
               <Popover
                 id={id}
@@ -77,7 +103,7 @@ export default function Navbar({ select }) {
                   <UserInfoDialog />
                   <ViewUserInfo />
                   <ListItem button onClick={onLogout}>
-                    Đăng suất
+                    Đăng xuất
                   </ListItem>
                 </List>
               </Popover>
@@ -90,10 +116,10 @@ export default function Navbar({ select }) {
                 color="primary"
                 style={{ marginRight: "10px" }}
               >
-                Login
+                Đăng nhập
               </Button>
               <Button href="/register" variant="contained" color="primary">
-                Register
+                Đăng ký
               </Button>
             </>
           )}

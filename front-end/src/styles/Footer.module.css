@@ -1,5 +1,34 @@
 .card {
   border-radius: 0%;
-  background-color: #091820cb;
-  padding: 0 13%;
+  background-color: rgb(29, 29, 29);
+  padding: 0 5%;
+}
+
+.title {
+  color: #ffffff40;
+  font-weight: 500;
+}
+
+.linkWrapper {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  margin-bottom: 10px;
+  color: #fff;
 }

@@ -5,6 +5,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ListItem from "@material-ui/core/ListItem";
+import Avatar from "@material-ui/core/Avatar";
+import PersonIcon from "@material-ui/icons/Person";
 import styles from "../styles/Dialog.module.css";
 import { useUser } from "../auth/useUser";
 import { apiURL } from "../utils/apiURL";
@@ -31,7 +33,7 @@ export default function ViewUserInfo() {
 
     setName(info.name);
     setEmail(info.email);
-    setBirthday(info.birthday);
+    setBirthday(info.birthday.split("T")[0]);
     setJob(info.job);
     setAddress(info.address);
   };
@@ -47,14 +49,34 @@ export default function ViewUserInfo() {
         Xem thông tin cá nhân
       </ListItem>
       <Dialog open={open} onClose={dialogClose} aria-labelledby="form-dialog-title">
-        <DialogTitle className={styles.title}>Chỉnh sửa thông tin</DialogTitle>
+        <DialogTitle className={styles.title}>Thông tin cá nhân</DialogTitle>
         <DialogContent>
-          <small>*Để trống những thông tin muốn giữ nguyên</small>
-          <h1>{name}</h1>
-          <h1>{email}</h1>
-          <h1>{birthday}</h1>
-          <h1>{job}</h1>
-          <h1>{address}</h1>
+          <div className={styles.wrapperDialog}>
+            <div style={{ width: "200px" }}>
+              <h3>Họ và tên: </h3>
+              <span>{name}</span>
+            </div>
+            <div style={{ width: "200px" }}>
+              <h3>Email: </h3>
+              <span>{email}</span>
+            </div>
+          </div>
+          <hr />
+          <div className={styles.wrapperDialog}>
+            <div style={{ width: "200px" }}>
+              <h3>Sinh nhật: </h3>
+              <span>{birthday}</span>
+            </div>
+            <div style={{ width: "200px" }}>
+              <h3>Nghề nghiệp: </h3>
+              <span>{job}</span>
+            </div>
+          </div>
+          <hr />
+          <div>
+            <h3>Địa chỉ: </h3>
+            <span>{address}</span>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button variant="contained" color="primary" onClick={dialogClose}>

@@ -29,13 +29,15 @@ export default function Home() {
                   tiện ích và dịch vụ đi kèm. Giảm thiểu sai sót của nhân viên cũng như dễ dàng quản
                   lý dòng tiền lương.
                 </p>
-                <Button
-                  variant="contained"
-                  endIcon={<ExitToAppIcon />}
-                  className={styles.btnTryNow}
-                >
-                  Dùng ngay
-                </Button>
+                <a href="/dashboard" className={styles.tryNow}>
+                  <Button
+                    variant="contained"
+                    endIcon={<ExitToAppIcon />}
+                    className={styles.btnTryNow}
+                  >
+                    Thử ngay
+                  </Button>
+                </a>
               </Grid>
             </Grid>
           </CardContent>
@@ -61,7 +63,7 @@ export default function Home() {
                 <div style={{ height: "230px" }}>
                   <img src="security.svg" alt="security" className={styles.img} />
                 </div>
-                <p>Bảo mật an toàn, không thu thập thông tin tránh lộ dữ liệu bảng lương</p>
+                <p>Bảo mật an toàn, không thu thập thông tin tránh lộ dữ liệu người dùng</p>
               </Grid>
             </Grid>
           </CardContent>

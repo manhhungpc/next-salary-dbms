@@ -7,3 +7,9 @@
 .content {
   width: 30vw;
 }
+
+.wrapperDialog {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+}

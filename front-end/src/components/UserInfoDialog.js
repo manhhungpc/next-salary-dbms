@@ -15,7 +15,7 @@ import { useToken } from "../auth/useToken";
 export default function UserInfoDialog() {
   const user = useUser();
   const [token, setToken] = useToken();
-  const { id, userInfo } = user;
+  const { id } = user;
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -45,7 +45,6 @@ export default function UserInfoDialog() {
       <Dialog open={open} onClose={dialogClose}>
         <DialogTitle className={styles.title}>Chỉnh sửa thông tin</DialogTitle>
         <DialogContent>
-          <small>*Để trống những thông tin muốn giữ nguyên</small>
           <div className={styles.input}>
             <TextField
               label="Họ và tên"

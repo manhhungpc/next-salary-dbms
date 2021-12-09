@@ -11,6 +11,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { apiURL } from "../utils/apiURL";
 import { useToken } from "../auth/useToken";
+import Footer from "../components/Footer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -39,7 +40,7 @@ export default function Login() {
         <Card className={styles.card}>
           <CardContent>
             <h1 className={styles.title}>Đăng nhập</h1>
-            {error && <small>{error}</small>}
+            {error && <small style={{ color: "red" }}>{error}</small>}
             <FormControl>
               <InputLabel htmlFor="user-email">Email</InputLabel>
               <Input
@@ -57,17 +58,19 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.btnSubmit}
+              onClick={onLogin}
+            >
+              Đăng nhập
+            </Button>
           </CardContent>
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.btnSubmit}
-            onClick={onLogin}
-          >
-            Đăng nhập
-          </Button>
+          <img src="loginSignup.svg" alt="login" className={styles.img} />
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

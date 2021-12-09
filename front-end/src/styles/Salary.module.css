@@ -1,5 +1,10 @@
 .wrap {
   min-width: 275;
-  margin-top: 20px;
+  margin: 20px 0;
   height: max-content;
+  min-height: 85vh;
+}
+
+.inputSalary {
+  margin-top: 12px;
 }

@@ -12,6 +12,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { apiURL } from "../../utils/apiURL";
 import { useToken } from "../../auth/useToken";
+import styles from "../../styles/Salary.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SalaryDialog({ idTable, selected, setRows }) {
   //material-ui
@@ -36,8 +39,8 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
   };
 
   useEffect(() => {
-    //Tổng lương = lương chuẩn * hệ số * ngày đi làm + thêm giờ * 3 lần lương chuẩn
-    const calcTotal = standardSalary * (factor * workingDay + overtime * 3);
+    //Tổng lương = lương chuẩn * hệ số * ngày đi làm + thêm giờ * lương chuẩn * 12.5% (1/8)
+    const calcTotal = standardSalary * (factor * workingDay + overtime * (1 / 8));
     setTotal(calcTotal);
   }, [standardSalary, factor, workingDay, overtime, open]);
 
@@ -67,6 +70,13 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
     const data = { name, standardSalary, factor, workingDay, overtime, total };
     await axios.post(`${apiURL}/api/new-employee/${idTable}`, data, headers);
     handleClose();
+
+    toast.configure();
+    toast.success("Thêm nhân viên thành công", {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 3000,
+      theme: "dark",
+    });
   };
 
   const onUpdateEmployee = async () => {
@@ -95,36 +105,48 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
         <DialogTitle id="form-dialog-title">Thêm nhân viên</DialogTitle>
         <DialogContent>
           <TextField
+            className={styles.inputSalary}
             label="Họ tên"
             defaultValue={name}
             fullWidth
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
-            label="Lương cơ bản"
+            className={styles.inputSalary}
+            label="Lương cơ bản (nghìn đồng/ngày)"
             defaultValue={standardSalary}
             fullWidth
             onChange={(e) => setStandardSalary(e.target.value)}
           />
           <TextField
+            className={styles.inputSalary}
             label="Hệ số"
             defaultValue={factor}
             fullWidth
             onChange={(e) => setFactor(e.target.value)}
           />
           <TextField
+            className={styles.inputSalary}
             label="Số ngày làm việc"
             defaultValue={workingDay}
             fullWidth
             onChange={(e) => setWorkingDay(e.target.value)}
           />
           <TextField
-            label="Làm thêm giờ"
+            className={styles.inputSalary}
+            label="Làm thêm giờ (tiếng)"
             defaultValue={overtime}
             fullWidth
             onChange={(e) => setOvertime(e.target.value)}
           />
-          <TextField label="totalSalary" fullWidth value={total} variant="outlined" disabled />
+          <TextField
+            className={styles.inputSalary}
+            label="Tổng lương nhận (nghìn đồng)"
+            fullWidth
+            value={total}
+            variant="outlined"
+            disabled
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

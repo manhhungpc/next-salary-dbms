@@ -17,6 +17,8 @@ import SalaryDialog from "./SalaryDialog";
 import axios from "axios";
 import { apiURL } from "../../utils/apiURL";
 import { useToken } from "../../auth/useToken";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -65,6 +67,13 @@ const EnhancedTableToolbar = (props) => {
     await axios.post(`${apiURL}/api/delete-employees`, { selected, idTable }, headers);
     setLoadDelete(true);
     setSelected([]);
+
+    toast.configure();
+    toast.success(`Đã xóa nhân viên khỏi bảng`, {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 3000,
+      theme: "dark",
+    });
   };
 
   return (
@@ -165,6 +174,7 @@ export default function TableSalary(props) {
             onRequestSort={handleRequestSort}
             rowCount={rows.length}
           />
+
           <TableBody>
             {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
               const isItemSelected = isSelected(row.e_id);
@@ -198,6 +208,7 @@ export default function TableSalary(props) {
             })}
           </TableBody>
         </Table>
+        {!rows.length && <p>Hiện chưa có nhân viên nào ở bảng này</p>}
       </TableContainer>
     </div>
   );

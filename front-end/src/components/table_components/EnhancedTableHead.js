@@ -8,11 +8,21 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 const headCells = [
   { id: "name", numeric: false, disablePadding: true, label: "Họ và tên" },
-  { id: "standard_salary", numeric: true, disablePadding: false, label: "Lương cơ bản" },
+  {
+    id: "standard_salary",
+    numeric: true,
+    disablePadding: false,
+    label: "Lương cơ bản (nghìn đồng/ngày)",
+  },
   { id: "factor", numeric: true, disablePadding: false, label: "Hệ số" },
   { id: "working_day", numeric: true, disablePadding: false, label: "Số ngày làm việc" },
-  { id: "overtime", numeric: true, disablePadding: false, label: "Làm thêm giờ" },
-  { id: "totalSalary", numeric: true, disablePadding: false, label: "Tổng lương nhận" },
+  { id: "overtime", numeric: true, disablePadding: false, label: "Làm thêm giờ (tiếng)" },
+  {
+    id: "totalSalary",
+    numeric: true,
+    disablePadding: false,
+    label: "Tổng lương nhận (nghìn đồng)",
+  },
 ];
 
 export default function EnhancedTableHead(props) {
