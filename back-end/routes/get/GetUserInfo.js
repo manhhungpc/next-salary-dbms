@@ -1,4 +1,4 @@
-import { getUserInfo } from "../../utils/query";
+import { getUserInfo } from "../../utils/query/User";
 import jwt from "jsonwebtoken";
 
 export const GetUserInfo = {

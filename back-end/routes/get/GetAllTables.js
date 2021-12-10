@@ -1,4 +1,4 @@
-import { getUserTables } from "../../utils/query";
+import { getUserTables } from "../../utils/query/User";
 import jwt from "jsonwebtoken";
 
 export const GetAllTables = {

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { getEmail, getUserInfo } from "../utils/query";
+import { getEmail, getUserInfo } from "../utils/query/User";
 
 export const LoginRoute = {
   path: "/api/login",

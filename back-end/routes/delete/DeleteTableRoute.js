@@ -1,4 +1,4 @@
-import { deleteTable } from "../../utils/query";
+import { deleteTable } from "../../utils/query/Tables";
 import jwt from "jsonwebtoken";
 
 export const DeleteTable = {

@@ -1,4 +1,4 @@
-import { updateTableName } from "../../utils/query";
+import { updateTableName } from "../../utils/query/Tables";
 import jwt from "jsonwebtoken";
 
 export const UpdateTableName = {

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { insertNewTable } from "../../utils/query";
+import { insertNewTable } from "../../utils/query/Tables";
 
 export const NewTableRoute = {
   path: "/api/new-table/",

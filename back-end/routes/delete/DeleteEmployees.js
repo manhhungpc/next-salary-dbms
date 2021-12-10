@@ -1,4 +1,5 @@
-import { deleteEmployee, deleteRows } from "../../utils/query";
+import { deleteEmployee } from "../../utils/query/Employee";
+import { deleteRows } from "../../utils/query/Tables";
 import jwt from "jsonwebtoken";
 
 export const DeleteEmployees = {

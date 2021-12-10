@@ -1,4 +1,4 @@
-import { getAllEmployees } from "../../utils/query";
+import { getAllEmployees } from "../../utils/query/Employee";
 import jwt from "jsonwebtoken";
 
 export const GetAllEmployees = {

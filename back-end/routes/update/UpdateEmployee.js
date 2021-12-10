@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { updateEmployee } from "../../utils/query";
+import { updateEmployee } from "../../utils/query/Employee";
 
 export const UpdateEmployee = {
   path: "/api/update-employee/:e_id",

@@ -1,4 +1,4 @@
-import { getUserInfo, updateUserInfo } from "../../utils/query";
+import { updateUserInfo } from "../../utils/query/User";
 import jwt from "jsonwebtoken";
 
 export const UpdateUserInfo = {
@@ -23,7 +23,6 @@ export const UpdateUserInfo = {
 
       try {
         await updateUserInfo(id, data);
-        const userInfo = { name, email, birthday, job, address };
 
         jwt.sign(
           { id, name, email, birthday, job, address },

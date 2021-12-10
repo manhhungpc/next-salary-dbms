@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { getEmail, registerNewUser } from "../utils/query";
+import { getEmail, registerNewUser } from "../utils/query/User";
 import dotenv from "dotenv";
 dotenv.config();
 

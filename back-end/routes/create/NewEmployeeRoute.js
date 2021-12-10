@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { addRows, insertNewEmployee } from "../../utils/query";
+import { addRows } from "../../utils/query/Tables";
+import { insertNewEmployee } from "../../utils/query/Employee";
 
 export const NewEmployeeRoute = {
   path: "/api/new-employee/:idTable",
