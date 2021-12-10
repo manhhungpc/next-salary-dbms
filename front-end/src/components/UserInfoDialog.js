@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -11,6 +11,8 @@ import axios from "axios";
 import { apiURL } from "../utils/apiURL";
 import { useUser } from "../auth/useUser";
 import { useToken } from "../auth/useToken";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UserInfoDialog() {
   const user = useUser();
@@ -30,6 +32,13 @@ export default function UserInfoDialog() {
     });
     setToken(res.data.token);
     dialogClose();
+
+    toast.configure();
+    toast.warning("Cập nhật thông tin thành công. Hãy refresh lại trang để thấy", {
+      position: toast.POSITION.TOP_LEFT,
+      autoClose: 3500,
+      theme: "dark",
+    });
   };
 
   //antd

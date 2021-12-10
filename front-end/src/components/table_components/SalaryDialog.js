@@ -110,6 +110,7 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
             defaultValue={name}
             fullWidth
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <TextField
             className={styles.inputSalary}
@@ -117,6 +118,7 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
             defaultValue={standardSalary}
             fullWidth
             onChange={(e) => setStandardSalary(e.target.value)}
+            required
           />
           <TextField
             className={styles.inputSalary}
@@ -124,6 +126,7 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
             defaultValue={factor}
             fullWidth
             onChange={(e) => setFactor(e.target.value)}
+            required
           />
           <TextField
             className={styles.inputSalary}
@@ -131,6 +134,7 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
             defaultValue={workingDay}
             fullWidth
             onChange={(e) => setWorkingDay(e.target.value)}
+            required
           />
           <TextField
             className={styles.inputSalary}
@@ -138,6 +142,7 @@ export default function SalaryDialog({ idTable, selected, setRows }) {
             defaultValue={overtime}
             fullWidth
             onChange={(e) => setOvertime(e.target.value)}
+            required
           />
           <TextField
             className={styles.inputSalary}

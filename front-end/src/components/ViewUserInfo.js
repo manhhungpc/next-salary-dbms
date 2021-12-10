@@ -5,8 +5,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ListItem from "@material-ui/core/ListItem";
-import Avatar from "@material-ui/core/Avatar";
-import PersonIcon from "@material-ui/icons/Person";
 import styles from "../styles/Dialog.module.css";
 import { useUser } from "../auth/useUser";
 import { apiURL } from "../utils/apiURL";

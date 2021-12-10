@@ -14,7 +14,12 @@ import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import TextField from "@material-ui/core/TextField";
-import CardContent from "@material-ui/core/CardContent";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 import ListItemText from "@material-ui/core/ListItemText";
 import Tooltip from "@material-ui/core/Tooltip";
 import styles from "../styles/Dashboard.module.css";
@@ -102,6 +107,48 @@ const TableList = ({ tables, setLoading, headers }) => {
   );
 };
 
+const StaticTable = ({ tables }) => {
+  function createData(id, name, nRows, createDate) {
+    return {
+      id,
+      name,
+      nRows,
+      createDate,
+    };
+  }
+  const data = tables.map((item) => {
+    //createData(item.id, item.name, item.nRows, item.createDate);
+    const formatDate = item.createDate.split("T")[0];
+    return createData(item.id, item.name, item.nRows, formatDate);
+  });
+  return (
+    <>
+      <Table style={{ width: "92%" }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Id bảng</TableCell>
+            <TableCell align="right">Tên</TableCell>
+            <TableCell align="right">Số nhân viên</TableCell>
+            <TableCell align="right">Ngày tạo bảng</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row">
+                {row.id}
+              </TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.nRows}</TableCell>
+              <TableCell align="right">{row.createDate}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
 
@@ -152,22 +199,12 @@ export default function Dashboard() {
               <TableList tables={tables} token={token} setLoading={setLoading} headers={headers} />
             </Grid>
             <Grid item xs={5}>
-              <h1>Tiện ích khác</h1>
+              <h1>Thống kê</h1>
               <div className={styles.wrapperImg}>
                 <img src="other-utils.svg" className={styles.imgUtil} alt="utils" />
               </div>
               <br />
-              <div style={{ display: "inline-block" }}>
-                <Card className={styles.cardUtil}>
-                  <CardContent>Tin tức</CardContent>
-                </Card>
-                <Card className={styles.cardUtil}>
-                  <CardContent>Kho sách</CardContent>
-                </Card>
-                <Card className={styles.cardUtil}>
-                  <CardContent>Đọc báo</CardContent>
-                </Card>
-              </div>
+              <StaticTable tables={tables} />
             </Grid>
           </Grid>
         </Card>

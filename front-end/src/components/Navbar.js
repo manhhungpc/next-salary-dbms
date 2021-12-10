@@ -17,6 +17,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ViewUserInfo from "./ViewUserInfo";
 import { useUser } from "../auth/useUser";
 import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import NotificationsNoneTwoToneIcon from "@material-ui/icons/NotificationsNoneTwoTone";
 
 export default function Navbar({ select }) {
   const [auth, setAuth] = useState(false);
@@ -73,7 +76,7 @@ export default function Navbar({ select }) {
                 href="/dashboard"
               />
               <Tab label={<p className={styles.textTab}>Liên hệ</p>} className={styles.tab} />
-              <Tab label={<p className={styles.textTab}>About us</p>} className={styles.tab} />
+              <Tab label={<p className={styles.textTab}>Về chúng tôi</p>} className={styles.tab} />
             </StyledTabs>
           </div>
           <Typography className={styles.title} />
@@ -107,6 +110,11 @@ export default function Navbar({ select }) {
                   </ListItem>
                 </List>
               </Popover>
+              <Tooltip title="Thông báo">
+                <IconButton>
+                  <NotificationsNoneTwoToneIcon />
+                </IconButton>
+              </Tooltip>
             </>
           ) : (
             <>
