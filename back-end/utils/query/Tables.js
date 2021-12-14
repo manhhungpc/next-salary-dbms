@@ -19,8 +19,8 @@ export const deleteTable = (idTable) => {
   );
 };
 
-export const deleteRows = (idTable) => {
-  return con.query(`UPDATE tables_management SET nRows = nRows - 1 WHERE id="${idTable}"`);
+export const deleteRows = (idTable, numbers) => {
+  return con.query(`UPDATE tables_management SET nRows = nRows - ${numbers} WHERE id="${idTable}"`);
 };
 
 export const addRows = (idTable) => {

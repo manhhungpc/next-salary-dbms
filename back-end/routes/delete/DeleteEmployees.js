@@ -18,7 +18,7 @@ export const DeleteEmployees = {
       try {
         const { selected, idTable } = req.body;
 
-        await deleteRows(idTable);
+        await deleteRows(idTable, selected.length);
         await deleteEmployee(selected);
         return res.status(200).json("Deleted employee");
       } catch (err) {

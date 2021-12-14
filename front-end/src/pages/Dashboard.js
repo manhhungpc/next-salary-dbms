@@ -73,10 +73,7 @@ const TableList = ({ tables, setLoading, headers }) => {
             <ListItemText
               primary={<h2 style={{ margin: "4px 0" }}>{item.name}</h2>}
               secondary={
-                <span style={{ margin: "0" }}>
-                  Ngày tạo: {item.createDate.split("T")[0]}
-                  <small style={{ display: "block" }}>Id bảng: {item.id}</small>
-                </span>
+                <p style={{ margin: "8px 0" }}>Ngày tạo: {item.createDate.split("T")[0]}</p>
               }
             />
 
