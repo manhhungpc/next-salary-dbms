@@ -12,4 +12,5 @@ An app to manage salary in an effecient way
 ### Demo
 
 You can watch the demo of my application [here](https://youtu.be/K_j3KiPziSE)
+
 Give me a like if you love it :satisfied:
